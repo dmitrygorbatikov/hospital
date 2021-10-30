@@ -18,7 +18,7 @@ export class History {
    drugId: string
 
    @Prop()
-   countDrugs: string
+   countDrugs: number
 
    @Prop()
    doctorId: string
@@ -30,13 +30,13 @@ export class History {
    doctorSurName: string
 
    @Prop()
-   patientName: string
+   patientName?: string
 
    @Prop()
-   patientSurName: string
+   patientSurName?: string
 
    @Prop()
-   patientId: string
+   patientId?: string
 
    @Prop()
    registerDate: number

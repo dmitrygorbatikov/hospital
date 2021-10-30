@@ -61,6 +61,7 @@ export class AuthController {
             img,
             description,
             balance: 0,
+            costDrugs: 0,
             registerDate: getRegisterDate(),
             role: RolesEnum.doctor,
          })

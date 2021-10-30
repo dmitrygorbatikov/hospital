@@ -13,3 +13,9 @@ export enum ErrorsEnum {
    'storageNotFound' = 'Storage not found',
    'setRightCapacity' = 'Please set capacity no less than 100',
 }
+
+export enum DrugEnum {
+   'add' = 'add',
+   'get' = 'get',
+   'giveOut' = 'giveOut',
+}

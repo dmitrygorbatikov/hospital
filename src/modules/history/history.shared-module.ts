@@ -14,4 +14,4 @@ import { HistoryService } from './history.service'
    providers: [HistoryService],
    exports: [HistoryService],
 })
-export class DrugSharedModule {}
+export class HistorySharedModule {}

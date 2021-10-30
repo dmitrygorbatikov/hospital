@@ -49,6 +49,11 @@ export class Doctor {
    @Prop({
       required: true,
    })
+   costDrugs: number
+
+   @Prop({
+      required: true,
+   })
    registerDate: number
 
    @Prop({

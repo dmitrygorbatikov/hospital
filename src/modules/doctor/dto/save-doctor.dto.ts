@@ -48,7 +48,12 @@ export class saveDoctorBodyDto {
    role: string
    @ApiProperty({
       description: 'Balance',
-      example: 10000,
+      example: 0,
    })
    balance: number
+   @ApiProperty({
+      description: 'costDrugs',
+      example: 0,
+   })
+   costDrugs: number
 }

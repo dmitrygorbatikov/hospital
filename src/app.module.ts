@@ -6,9 +6,7 @@ import { PatientModule } from './modules/patient/patient.module'
 import { DoctorModule } from './modules/doctor/doctor.module'
 import { DrugModule } from './modules/drug/drug.module'
 import { StorageModule } from './modules/storage/storage.module'
-import { HistoryController } from './modules/history/history.controller';
-import { HistoryService } from './modules/history/history.service';
-import { HistoryModule } from './modules/history/history.module';
+import { HistoryModule } from './modules/history/history.module'
 
 @Module({
    imports: [
@@ -23,7 +21,6 @@ import { HistoryModule } from './modules/history/history.module';
       StorageModule,
       HistoryModule,
    ],
-   providers: [AppModule, HistoryService],
-   controllers: [HistoryController],
+   providers: [AppModule],
 })
 export class AppModule {}
