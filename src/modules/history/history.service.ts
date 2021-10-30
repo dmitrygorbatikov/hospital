@@ -12,4 +12,10 @@ export class HistoryService {
    public create(body: HistoryDrugDto) {
       return new this.historyModel(body).save()
    }
+   public getDoctorHistory(doctorId: string) {
+      return this.historyModel.find({ doctorId })
+   }
+   public getPatientHistory(patientId: string) {
+      return this.historyModel.find({ patientId })
+   }
 }

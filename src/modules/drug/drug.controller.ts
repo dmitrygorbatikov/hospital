@@ -1,4 +1,12 @@
-import { Body, Controller, Headers, Param, Post, Put } from '@nestjs/common'
+import {
+   Body,
+   Controller,
+   Headers,
+   Param,
+   Post,
+   Put,
+   Query,
+} from '@nestjs/common'
 import { AuthService } from '../auth/auth.service'
 import { DrugService } from './drug.service'
 import {
@@ -6,6 +14,7 @@ import {
    ApiCreatedResponse,
    ApiHeader,
    ApiParam,
+   ApiQuery,
    ApiTags,
 } from '@nestjs/swagger'
 import { StorageService } from '../storage/storage.service'
@@ -17,6 +26,7 @@ import { createDoctorBodyDto } from '../doctor/dto/create-doctor.dto'
 import { AddDrugDto } from './dto/add-drug.dto'
 import { DoctorService } from '../doctor/doctor.service'
 import { HistoryService } from '../history/history.service'
+import { PatientService } from '../patient/patient.service'
 
 @ApiTags('drug')
 @Controller('drug')
@@ -27,6 +37,7 @@ export class DrugController {
       private storageService: StorageService,
       private doctorService: DoctorService,
       private historyService: HistoryService,
+      private patientService: PatientService,
    ) {}
 
    @ApiCreatedResponse({
@@ -183,12 +194,16 @@ export class DrugController {
    @ApiParam({
       name: 'id',
    })
+   @ApiQuery({
+      name: 'patientId',
+   })
    @ApiBody({ type: AddDrugDto })
    @Put('/give-out-drug/:id')
    public async giveOutDrug(
       @Body() body: AddDrugDto,
       @Param() params,
       @Headers() headers,
+      @Query() query,
    ) {
       try {
          const { count } = body
@@ -218,6 +233,34 @@ export class DrugController {
          await storage.save()
          drug.count += count
          await drug.save()
+
+         const patient = await this.patientService.findPatientById(
+            query.patientId,
+         )
+         if (!patient) {
+            return { error: ErrorsEnum.userNotFound }
+         }
+
+         const money = count * drug.price
+
+         await this.historyService.create({
+            type: DrugEnum.add,
+            money,
+            drugTitle: drug.title,
+            drugId: drug._id,
+            countDrugs: drug.count,
+            doctorName: doctor.name,
+            doctorSurName: doctor.surname,
+            doctorId: doctor._id,
+            patientName: patient.name,
+            patientId: query.patientId,
+            patientSurName: patient.surname,
+            registerDate: getRegisterDate(),
+         })
+         doctor.costDrugs += money
+         doctor.balance += money * -1
+         await doctor.save()
+
          return { drug }
       } catch (e) {
          return { error: e }

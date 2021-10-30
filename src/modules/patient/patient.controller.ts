@@ -63,7 +63,6 @@ export class PatientController {
             category,
             indicators: [getRandomPatientIndicators()],
             doctorId,
-            drugIds: [],
             registerDate: getRegisterDate(),
             role: RolesEnum.patient,
          })

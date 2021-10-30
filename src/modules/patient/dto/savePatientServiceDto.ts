@@ -38,11 +38,6 @@ export class SavePatientServiceDto {
    })
    indicators: Array<PatientIndicatorsDto>
    @ApiProperty({
-      description: 'drugIds',
-      example: ['fsdfsdfsdfsdfwrf23', 'fw2234rfwg3wygtgs'],
-   })
-   drugIds: Array<string>
-   @ApiProperty({
       description: 'category',
       example: 5,
    })

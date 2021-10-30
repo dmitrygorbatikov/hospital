@@ -5,6 +5,7 @@ import { DrugSharedModule } from './drug.shared-module'
 import { StorageSharedModule } from '../storage/storage.shared-module'
 import { DoctorSharedModule } from '../doctor/doctor.shared-module'
 import { HistorySharedModule } from '../history/history.shared-module'
+import { PatientSharedModule } from '../patient/patient.shared-module'
 
 @Module({
    controllers: [DrugController],
@@ -14,6 +15,7 @@ import { HistorySharedModule } from '../history/history.shared-module'
       StorageSharedModule,
       DoctorSharedModule,
       HistorySharedModule,
+      PatientSharedModule,
    ],
 })
 export class DrugModule {}

@@ -28,9 +28,6 @@ export class Patient {
    category: string
 
    @Prop()
-   drugIds: string[]
-
-   @Prop()
    indicators: Array<PatientIndicatorsDto>
 
    @Prop()
