@@ -1,16 +1,15 @@
-import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-import { Doctor, DoctorSchema } from './doctor.schema';
-import { DoctorService } from './doctor.service';
-import { AuthService } from '../auth/auth.service';
-import { JwtService } from '@nestjs/jwt';
+import { Module } from '@nestjs/common'
+import { MongooseModule } from '@nestjs/mongoose'
+import { Doctor, DoctorSchema } from './doctor.schema'
+import { DoctorService } from './doctor.service'
+import { AuthSharedModule } from '../auth/auth.shared-module'
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([{ name: Doctor.name, schema: DoctorSchema }]),
-  ],
-  providers: [DoctorService, AuthService, JwtService],
-  exports: [DoctorService],
+   imports: [
+      MongooseModule.forFeature([{ name: Doctor.name, schema: DoctorSchema }]),
+      AuthSharedModule,
+   ],
+   providers: [DoctorService],
+   exports: [DoctorService],
 })
-export class DoctorSharedModule {
-}
+export class DoctorSharedModule {}
