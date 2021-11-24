@@ -1,4 +1,4 @@
 export class PatientDosesDto {
-  drugId: string;
-  dose: number;
+   drugId: string
+   dose: number
 }
